@@ -10,6 +10,7 @@ Install KConfig
   make
   make install
   Add /usr/local/lib to $LD_LIBRARY_PATH else kconfig-conf can't find a library
+    In ~/.profile ==> export LD_LIBRARY_PATH="/usr/local/lib"
 
 Commands
   nuttx/tools/configure.sh shenzhou/nsh
