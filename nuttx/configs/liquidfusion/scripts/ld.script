@@ -33,13 +33,9 @@
  *
  ****************************************************************************/
 
-/* The STM32F107VC has 256K of FLASH beginning at address 0x0800:0000 and
- * 64K of SRAM beginning at address 0x2000:0000.
- */
-
 MEMORY
 {
-	flash (rx) : ORIGIN = 0x08000000, LENGTH = 256K
+	flash (rx) : ORIGIN = 0x08000000, LENGTH = 128K
 	sram (rwx) : ORIGIN = 0x20000000, LENGTH = 64K
 }
 
@@ -81,7 +77,7 @@ SECTIONS
 
 	_eronly = ABSOLUTE(.);
 
-	/* The STM32F107VC has 64Kb of SRAM beginning at the following address */
+	/* The STM32F107RB has 64Kb of SRAM beginning at the following address */
 
 	.data : {
 		_sdata = ABSOLUTE(.);

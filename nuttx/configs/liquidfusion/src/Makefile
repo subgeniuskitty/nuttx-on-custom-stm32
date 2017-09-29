@@ -36,60 +36,10 @@
 -include $(TOPDIR)/Make.defs
 
 ASRCS =
-CSRCS = stm32_boot.c stm32_spi.c stm32_mmcsd.c stm32_chipid.c
-
-ifeq ($(CONFIG_ARCH_LEDS),y)
-CSRCS += stm32_autoleds.c
-else
-CSRCS += stm32_userleds.c
-endif
-
-ifeq ($(CONFIG_ARCH_BUTTONS),y)
-CSRCS +=  stm32_buttons.c
-endif
-
-ifeq ($(CONFIG_ARCH_RELAYS),y)
-CSRCS +=  stm32_relays.c
-endif
-
-ifeq ($(CONFIG_STM32_OTGFS),y)
-CSRCS += stm32_usb.c
-endif
+CSRCS = stm32_boot.c stm32_chipid.c stm32_userleds.c
 
 ifeq ($(CONFIG_LIB_BOARDCTL),y)
 CSRCS += stm32_appinit.c
-endif
-
-ifeq ($(CONFIG_MTD_W25),y)
-CSRCS += stm32_w25.c
-endif
-
-ifeq ($(CONFIG_USBMSC),y)
-CSRCS += stm32_usbmsc.c
-endif
-
-ifeq ($(CONFIG_USBDEV_COMPOSITE),y)
-CSRCS += stm32_composite.c
-endif
-
-ifeq ($(CONFIG_CAN),y)
-CSRCS += stm32_can.c
-endif
-
-ifeq ($(CONFIG_ADC),y)
-CSRCS += stm32_adc.c
-endif
-
-# NOTE: SSD1289 is not supported on the board
-
-ifeq ($(CONFIG_LCD_SSD1289),y)
-CSRCS += stm32_ssd1289.c
-else
-CSRCS += stm32_ili93xx.c
-endif
-
-ifeq ($(CONFIG_INPUT_ADS7843E),y)
-CSRCS += stm32_touchscreen.c
 endif
 
 include $(TOPDIR)/configs/Board.mk

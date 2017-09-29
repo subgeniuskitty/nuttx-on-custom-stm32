@@ -71,29 +71,6 @@
 
 void stm32_boardinitialize(void)
 {
-  /* Configure SPI chip selects if 1) SPI is not disabled, and 2) the weak function
-   * stm32_spidev_initialize() has been brought into the link.
-   */
-
-#if defined(CONFIG_STM32_SPI1) || defined(CONFIG_STM32_SPI3)
-  if (stm32_spidev_initialize)
-    {
-      stm32_spidev_initialize();
-    }
-#endif
-
-  /* Initialize USB is 1) USBDEV is selected, 2) the USB controller is not
-   * disabled, and 3) the weak function stm32_usbinitialize() has been brought
-   * into the build.
-   */
-
-#if defined(CONFIG_USBDEV) && defined(CONFIG_STM32_USB)
-  if (stm32_usbinitialize)
-    {
-      stm32_usbinitialize();
-    }
-#endif
-
   /* Configure on-board LEDs if LED support has been selected. */
 
 #ifdef CONFIG_ARCH_LEDS
