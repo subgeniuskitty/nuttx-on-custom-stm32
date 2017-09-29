@@ -54,18 +54,14 @@
  * -- ---- -------------- -------------------------------------------------------------------
  * PN NAME SIGNAL         NOTES
  * -- ---- -------------- -------------------------------------------------------------------
- * 83 PD2  LED1           Active low: Pulled high
- * 84 PD3  LED2           Active low: Pulled high
- * 85 PD4  LED3           Active low: Pulled high
- * 88 PD7  LED4           Active low: Pulled high
  */
 
 #define GPIO_LED1       (GPIO_OUTPUT|GPIO_CNF_OUTPP|GPIO_MODE_50MHz|\
-                         GPIO_OUTPUT_SET|GPIO_PORTD|GPIO_PIN2)
+                         GPIO_OUTPUT_SET|GPIO_PORTC|GPIO_PIN6)
 #define GPIO_LED2       (GPIO_OUTPUT|GPIO_CNF_OUTPP|GPIO_MODE_50MHz|\
-                         GPIO_OUTPUT_SET|GPIO_PORTD|GPIO_PIN3)
+                         GPIO_OUTPUT_SET|GPIO_PORTC|GPIO_PIN7)
 #define GPIO_LED3       (GPIO_OUTPUT|GPIO_CNF_OUTPP|GPIO_MODE_50MHz|\
-                         GPIO_OUTPUT_SET|GPIO_PORTD|GPIO_PIN4)
+                         GPIO_OUTPUT_SET|GPIO_PORTB|GPIO_PIN15)
 
 /****************************************************************************************************
  * Public Types

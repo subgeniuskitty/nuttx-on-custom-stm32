@@ -1003,12 +1003,8 @@ config ARCH_BOARD_SHENZHOU
 	bool "Shenzhou STM32F107 board"
 	depends on ARCH_CHIP_STM32F107VC
 	select ARCH_HAVE_LEDS
-	select ARCH_HAVE_BUTTONS
-	select ARCH_HAVE_IRQBUTTONS
 	---help---
-		This port uses the Shenzhou STM32 F107 board and a GNU arm-nuttx-elf toolchain* under
-		Linux or Cygwin. See the http://www.armjishu.com for further information. This
-		board features the STMicro STM32F107VC MCU
+		This is a placeholder for Liquid Fusion. It needs to be split from the Shenzhou name.
 
 config ARCH_BOARD_SKP16C26
 	bool "Renesas SKP16C26 StarterKit"
@@ -1960,7 +1956,7 @@ if ARCH_BOARD_SAMV71_XULT
 source "configs/samv71-xult/Kconfig"
 endif
 if ARCH_BOARD_SHENZHOU
-source "configs/shenzhou/Kconfig"
+source "configs/liquidfusion/Kconfig"
 endif
 if ARCH_BOARD_SKP16C26
 source "configs/skp16c26/Kconfig"
