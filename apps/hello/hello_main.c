@@ -38,7 +38,7 @@
  ****************************************************************************/
 
 #include <nuttx/config.h>
-#include <stdio.h>
+#include "stm32_userled.h"
 
 /****************************************************************************
  * Public Functions
@@ -54,6 +54,7 @@ int main(int argc, FAR char *argv[])
 int hello_main(int argc, char *argv[])
 #endif
 {
-  printf("Hello, World!!\n");
+  board_userled_initialize();
+  board_userled(0,1);
   return 0;
 }
