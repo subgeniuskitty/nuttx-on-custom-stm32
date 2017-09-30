@@ -999,12 +999,11 @@ config ARCH_BOARD_SAMV71_XULT
 	---help---
 		The port of NuttX to the Atmel SAMV71 Xplained Ultra evaluation board.
 
-config ARCH_BOARD_SHENZHOU
-	bool "Shenzhou STM32F107 board"
+config ARCH_BOARD_LIQUIDFUSION
+	bool "Liquid Fusion Rev. 2 board"
 	depends on ARCH_CHIP_STM32F107VC
-	select ARCH_HAVE_LEDS
 	---help---
-		This is a placeholder for Liquid Fusion. It needs to be split from the Shenzhou name.
+		Liquid Fusion - Rev. 2
 
 config ARCH_BOARD_SKP16C26
 	bool "Renesas SKP16C26 StarterKit"
@@ -1592,7 +1591,7 @@ config ARCH_BOARD
 	default "sam4s-xplained-pro"       if ARCH_BOARD_SAM4S_XPLAINED_PRO
 	default "same70-xplained"          if ARCH_BOARD_SAME70_XPLAINED
 	default "samv71-xult"              if ARCH_BOARD_SAMV71_XULT
-	default "shenzhou"                 if ARCH_BOARD_SHENZHOU
+	default "liquidfusion"             if ARCH_BOARD_LIQUIDFUSION
 	default "skp16c26"                 if ARCH_BOARD_SKP16C26
 	default "spark"                    if ARCH_BOARD_SPARK
 	default "photon"                   if ARCH_BOARD_PHOTON
@@ -1955,7 +1954,7 @@ endif
 if ARCH_BOARD_SAMV71_XULT
 source "configs/samv71-xult/Kconfig"
 endif
-if ARCH_BOARD_SHENZHOU
+if ARCH_BOARD_LIQUIDFUSION
 source "configs/liquidfusion/Kconfig"
 endif
 if ARCH_BOARD_SKP16C26
