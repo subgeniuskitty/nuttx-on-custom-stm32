@@ -48,13 +48,33 @@
  * hello_main
  ****************************************************************************/
 
+void sgkwait(void)
+{
+  int i = 750000;
+  while( i > 0 ) {
+    --i;
+    asm("NOP");
+  }
+}
+
+
 #ifdef CONFIG_BUILD_KERNEL
 int main(int argc, FAR char *argv[])
 #else
 int hello_main(int argc, char *argv[])
 #endif
 {
-  board_userled_initialize();
-  board_userled(0,1);
+
+  int i = 0;
+  while(1) {
+    ++i;
+    if((i % 2) == 0) board_userled(2,0);
+    if((i % 2) == 1) board_userled(2,1);
+    sgkwait();
+  }
+
+
+
+
   return 0;
 }

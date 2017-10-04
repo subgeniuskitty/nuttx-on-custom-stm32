@@ -88,6 +88,8 @@ void stm32_rcc_enablelse(void)
    * the RCC BDCR register.
    */
 
+  modifyreg16(STM32_RCC_BDCR, RCC_BDCR_LSEON, 0);
+  modifyreg16(STM32_RCC_BDCR, 0, RCC_BDCR_LSEBYP);
   modifyreg16(STM32_RCC_BDCR, 0, RCC_BDCR_LSEON);
 
   /* Wait for the LSE clock to be ready */
