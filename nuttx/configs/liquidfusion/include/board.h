@@ -102,6 +102,92 @@
 #define BOARD_LED2_BIT      (1 << BOARD_LED2)
 #define BOARD_LED3_BIT      (1 << BOARD_LED3)
 
+/* Button definitions ***************************************************************/
+/* The onboard 'reset' button is hardwired to the reset pin.
+ * Only the 'user' button is software interactable.
+ */
+
+#define BUTTON_KEY1         0
+#define NUM_BUTTONS         1
+
+#define BUTTON_USER         BUTTON_KEY1
+
+#define BUTTON_KEY1_BIT     (1 << BUTTON_KEY1)
+
+#define BUTTON_USER_BIT     BUTTON_KEY1_BIT
+
+/* Pin selections ******************************************************************/
+/* I2C
+ *
+ * -- ---- -------------- ----------------------------------------------------------
+ * PN NAME SIGNAL         NOTES
+ * -- ---- -------------- ----------------------------------------------------------
+ * 58 PB6  I2C1_SCL       Requires !CONFIG_STM32_I2C1_REMAP
+ * 59 PB7  I2C1_SDA
+ */
+
+#if defined(CONFIG_STM32_I2C1) && defined(CONFIG_STM32_I2C1_REMAP)
+#  error "CONFIG_STM32_I2C1 must not have CONFIG_STM32_I2C1_REMAP"
+#endif
+
+/* DAC
+ *
+ * -- ---- -------------- ----------------------------------------------------------
+ * PN NAME SIGNAL         NOTES
+ * -- ---- -------------- ----------------------------------------------------------
+ * 20 PA4  DAC_OUT1       Reference signal to linear regulator
+ */
+
+/* ADC
+ *
+ * -- ---- -------------- ----------------------------------------------------------
+ * PN NAME SIGNAL         NOTES
+ * -- ---- -------------- ----------------------------------------------------------
+ * 21 PA5  ADC_IN1        GPIO_ADC12_IN5. Measures current through CC regulator.
+ * 22 PA6  ADC_IN2        GPIO_ADC12_IN6. Measures temperature of power transistor.
+ */
+
+/* Ethernet
+ *
+ * -- ---- -------------- ----------------------------------------------------------
+ * PN NAME SIGNAL         NOTES
+ * -- ---- -------------- ----------------------------------------------------------
+ * 24 PC4  MII_RXD0       Ethernet PHY.  Requires CONFIG_STM32_ETH_REMAP
+ * 25 PC5  MII_RXD1       Ethernet PHY.  Requires CONFIG_STM32_ETH_REMAP
+ * 26 PB0  MII_RXD2       Ethernet PHY
+ * 27 PB1  MII_RXD3       Ethernet PHY
+ * 29 PB10 MII_RXER       Ethernet PHY
+ * 23 PA7  MII_RXDV       Ethernet PHY.  Requires CONFIG_STM32_ETH_REMAP
+ * 15 PA1  MII_RXC        Ethernet PHY
+ *
+ * 11 PC3  MII_TXC        Ethernet PHY
+ * 30 PB11 MII_TXEN       Ethernet PHY
+ * 33 PB12 MII_TXD0       Ethernet PHY
+ * 34 PB13 MII_TXD1       Ethernet PHY
+ * 10 PC2  MII_TXD2       Ethernet PHY
+ * 61 PB8  MII_TXD3
+ *
+ * 17 PA3  MII_COL        Ethernet PHY
+ * 14 PA0  MII_CRS        Ethernet PHY.  Requires CONFIG_STM32_ETH_REMAP
+ *
+ *  9 PC1  MII_MDC        Ethernet PHY
+ * 16 PA2  MII_MDIO       Ethernet PHY
+ *
+ *  8 PC0  MII_INT        Ethernet PHY
+ */
+
+#ifdef CONFIG_STM32_ETHMAC
+#  ifndef CONFIG_STM32_ETH_REMAP
+#    error "STM32 Ethernet requires CONFIG_STM32_ETH_REMAP"
+#  endif
+#  ifndef CONFIG_STM32_MII
+#    error "STM32 Ethernet requires CONFIG_STM32_MII"
+#  endif
+#  ifndef CONFIG_STM32_MII_MCO
+#    error "STM32 Ethernet requires CONFIG_STM32_MII_MCO"
+#  endif
+#endif
+
 /************************************************************************************
  * Public Data
  ************************************************************************************/
@@ -130,6 +216,17 @@ extern "C" {
  ************************************************************************************/
 
 void stm32_boardinitialize(void);
+
+/************************************************************************************
+ * Chip ID functions
+ *
+ * Description:
+ *   Non-standard functions to obtain chip ID information.
+ *
+ ************************************************************************************/
+
+const char *stm32_getchipid(void);
+const char *stm32_getchipid_string(void);
 
 #undef EXTERN
 #if defined(__cplusplus)
