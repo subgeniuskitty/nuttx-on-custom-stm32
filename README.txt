@@ -46,3 +46,11 @@ Turns out we can't use HSE or LSI for RTC. See arch/arm/src/stm32/stm32_rtcounte
   modifyreg16(STM32_RCC_BDCR, RCC_BDCR_LSEON, 0);
   modifyreg16(STM32_RCC_BDCR, 0, RCC_BDCR_LSEBYP);
   modifyreg16(STM32_RCC_BDCR, 0, RCC_BDCR_LSEON);
+
+Since RTC from LSE/HSI already exists for other STM32 chips it shouldn't be too hard to add/enable for STM32F107
+
+Also need to finish trimming fluff in apps/ folder.
+
+Also need to rework/link so I can build with board-specific code outside the main NuttX source tree.
+
+Need to work on the Kconfig file for this build. See nuttx/configs/liquidfusion/liquidfusion/defconfig for starting point.
